@@ -1,0 +1,23 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
+	"textures": {
+		"2": "vagabond_core:block/crafting_mat_body",
+		"particle": "vagabond_core:block/crafting_mat_overhang"
+	},
+	"elements": [
+		{
+			"name": "main",
+			"from": [0, 0.25, 0],
+			"to": [16, 0.275, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0.25, 0]},
+			"faces": {
+				"up": {"uv": [16, 16, 0, 0], "texture": "#2"}
+			}
+		}
+	]
+}

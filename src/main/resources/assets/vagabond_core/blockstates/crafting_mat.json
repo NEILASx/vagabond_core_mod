@@ -1,0 +1,39 @@
+{
+  "multipart": [
+    {
+      "apply": { "model": "vagabond_core:block/crafting_mat/main" }
+    },
+    {
+      "when": { "north": "false" },
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_NZ_off" }
+    },
+    {
+      "when": { "north": "true" },
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_NZ_on" }
+    },
+    {
+      "when": { "south": "false" },
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_Z_off" }
+    },
+    {
+      "when": { "south": "true" },
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_Z_on" }
+    },
+    {
+      "when": { "west": "false" },
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_NX_off" }
+    },
+    {
+      "when": { "west": "true" },
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_NX_on" }
+    },
+    {
+      "when": { "east": "false" },
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_X_off" }
+    },
+    {
+      "when": { "east": "true" },
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_X_on" }
+    }
+  ]
+}

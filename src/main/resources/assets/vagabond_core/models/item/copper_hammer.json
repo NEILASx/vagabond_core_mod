@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "vagabond_core:item/copper_hammer"
+  }
+}
