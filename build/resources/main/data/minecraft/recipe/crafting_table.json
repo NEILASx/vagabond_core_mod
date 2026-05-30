@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": "#minecraft:planks",
+    "C": "farmersdelight:canvas",
+    "S": "minecraft:shears",
+    "H": "vagabond_core:copper_hammer"
+  },
+  "pattern": [
+    " C ",
+    "SPH",
+    " P "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:crafting_table"
+  }
+}

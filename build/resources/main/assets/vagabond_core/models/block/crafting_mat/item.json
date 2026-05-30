@@ -1,0 +1,88 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [32, 32],
+	"textures": {
+		"1": "vagabond_core:block/crafting_mat_overhang",
+		"2": "vagabond_core:block/crafting_mat_body",
+		"particle": "vagabond_core:block/crafting_mat_overhang"
+	},
+	"elements": [
+		{
+			"name": "main",
+			"from": [0, 0.25, 0],
+			"to": [16, 0.275, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0.25, 0]},
+			"faces": {
+				"up": {"uv": [16, 16, 0, 0], "texture": "#2"}
+			}
+		},
+		{
+			"name": "overhang_NZ",
+			"from": [0, -1.725, 0],
+			"to": [16, 0.275, 0],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 0.275, 0]},
+			"faces": {
+				"north": {"uv": [0, 14, 16, 16], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"name": "overhang_Z",
+			"from": [0, -1.725, 16],
+			"to": [16, 0.275, 16],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 0.275, 16]},
+			"faces": {
+				"south": {"uv": [16, 0, 0, 2], "texture": "#1"}
+			}
+		},
+		{
+			"name": "overhang_NX",
+			"from": [0, -1.725, 0],
+			"to": [0, 0.275, 16],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [0, 0.275, 8]},
+			"faces": {
+				"west": {"uv": [16, 0, 14, 16], "rotation": 90, "texture": "#1"}
+			}
+		},
+		{
+			"name": "overhang_X",
+			"from": [16, -1.725, 0],
+			"to": [16, 0.275, 16],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [16, 0.275, 8]},
+			"faces": {
+				"east": {"uv": [0, 0, 2, 16], "rotation": 90, "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 2.5],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"translation": [0, 5, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, -135, 0],
+			"translation": [0, 4, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"head": {
+			"translation": [0, 14.5, 0],
+			"scale": [0.81, 1, 0.81]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}
