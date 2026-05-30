@@ -5,7 +5,6 @@ import com.vagabond.VagabondCore;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -38,7 +37,6 @@ public class CraftingMat extends Block {
 
     public CraftingMat(Properties properties) {
         super(properties);
-        // Correct way to set initial state in modern versions
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(NORTH, false)
                 .setValue(SOUTH, false)
@@ -47,12 +45,13 @@ public class CraftingMat extends Block {
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         super.animateTick(state, level, pos, random);
+
+        // TODO: animateTick(); doesnt happen that often. which is weird. maybe tick Schedule?
 
         BlockState updatedState = calculateState(state, level, pos);
         level.setBlock(pos, updatedState, Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE | Block.UPDATE_IMMEDIATE);
-        VagabondCore.LOGGER.info("animateTick();");
     }
 
     @Override
@@ -110,7 +109,6 @@ public class CraftingMat extends Block {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        // 'fillStateContainer' is now 'createBlockStateDefinition'
         builder.add(NORTH, SOUTH, WEST, EAST);
     }
     @Override

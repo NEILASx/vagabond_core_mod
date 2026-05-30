@@ -28,7 +28,6 @@ import org.slf4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
 
-// The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(VagabondCore.MODID)
 public class VagabondCore {
     public static final String MODID = "vagabond_core";
@@ -58,7 +57,7 @@ public class VagabondCore {
     }).build());
 
     public VagabondCore(IEventBus modEventBus, ModContainer modContainer) {
-        // Register everything that needs to be registered
+        // register everything that needs to be registered
 
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
