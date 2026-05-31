@@ -1,10 +1,10 @@
 package com.vagabond.blocks;
 
 import com.vagabond.CraftingMat.CraftingMatMenu;
-import com.vagabond.VagabondCore;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -45,25 +45,30 @@ public class CraftingMat extends Block {
     }
 
     @Override
-    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        super.animateTick(state, level, pos, random);
+    protected void onPlace(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
+        level.scheduleTick(pos, this, 1);
+    }
 
-        // TODO: animateTick(); doesnt happen that often. which is weird. maybe tick Schedule?
+    // TODO: THIS IS SO BAD FOR PERFORMANCE BUT IT UPDATES EVERY TICK 😭😭😭
+    @Override
+    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        super.tick(state, level, pos, random);
 
         BlockState updatedState = calculateState(state, level, pos);
         level.setBlock(pos, updatedState, Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE | Block.UPDATE_IMMEDIATE);
+        level.scheduleTick(pos, this, 1);
     }
-
-    @Override
-    public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block block, @NotNull BlockPos fromPos, boolean isMoving) {
-        super.neighborChanged(state, level, pos, block, fromPos, isMoving);
-
-        BlockState updatedState = calculateState(state, level, pos);
-
-        if (updatedState != state) {
-            level.setBlock(pos, updatedState, 3);
-        }
-    }
+//   ISNT RELIABLE FOR CHECKING
+//    @Override
+//    public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block block, @NotNull BlockPos fromPos, boolean isMoving) {
+//        super.neighborChanged(state, level, pos, block, fromPos, isMoving);
+//
+//        BlockState updatedState = calculateState(state, level, pos);
+//
+//        if (updatedState != state) {
+//            level.setBlock(pos, updatedState, 3);
+//        }
+//    }
 
     private BlockState calculateState(BlockState state, LevelAccessor level, BlockPos pos) {
         return state

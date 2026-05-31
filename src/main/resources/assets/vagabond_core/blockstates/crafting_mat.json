@@ -5,35 +5,35 @@
     },
     {
       "when": { "north": "false" },
-      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_NZ_off" }
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_nz_off" }
     },
     {
       "when": { "north": "true" },
-      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_NZ_on" }
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_nz_on" }
     },
     {
       "when": { "south": "false" },
-      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_Z_off" }
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_z_off" }
     },
     {
       "when": { "south": "true" },
-      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_Z_on" }
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_z_on" }
     },
     {
       "when": { "west": "false" },
-      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_NX_off" }
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_nx_off" }
     },
     {
       "when": { "west": "true" },
-      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_NX_on" }
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_nx_on" }
     },
     {
       "when": { "east": "false" },
-      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_X_off" }
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_x_off" }
     },
     {
       "when": { "east": "true" },
-      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_X_on" }
+      "apply": { "model": "vagabond_core:block/crafting_mat/overhang_x_on" }
     }
   ]
 }
