@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.vagabond"},{"l":"com.vagabond.blocks"},{"l":"com.vagabond.client"},{"l":"com.vagabond.CraftingMat"},{"l":"com.vagabond.EMI"}];updateSearchResults();
