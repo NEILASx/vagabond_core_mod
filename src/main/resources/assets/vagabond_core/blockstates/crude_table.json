@@ -1,0 +1,39 @@
+{
+  "multipart": [
+    {
+      "apply": { "model": "vagabond_core:block/crude_table/main" }
+    },
+    {
+      "when": { "north": "false" },
+      "apply": { "model": "vagabond_core:block/crude_table/overhang_nz_off" }
+    },
+    {
+      "when": { "north": "true" },
+      "apply": { "model": "vagabond_core:block/crude_table/overhang_nz_on" }
+    },
+    {
+      "when": { "south": "false" },
+      "apply": { "model": "vagabond_core:block/crude_table/overhang_z_off" }
+    },
+    {
+      "when": { "south": "true" },
+      "apply": { "model": "vagabond_core:block/crude_table/overhang_z_on" }
+    },
+    {
+      "when": { "west": "false" },
+      "apply": { "model": "vagabond_core:block/crude_table/overhang_nx_off" }
+    },
+    {
+      "when": { "west": "true" },
+      "apply": { "model": "vagabond_core:block/crude_table/overhang_nx_on" }
+    },
+    {
+      "when": { "east": "false" },
+      "apply": { "model": "vagabond_core:block/crude_table/overhang_x_off" }
+    },
+    {
+      "when": { "east": "true" },
+      "apply": { "model": "vagabond_core:block/crude_table/overhang_x_on" }
+    }
+  ]
+}

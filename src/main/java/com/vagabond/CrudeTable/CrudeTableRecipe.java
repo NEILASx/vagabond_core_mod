@@ -1,4 +1,4 @@
-package com.vagabond.CraftingMat;
+package com.vagabond.CrudeTable;
 
 import com.vagabond.VagabondTypes;
 import net.minecraft.core.HolderLookup;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CraftingMatRecipe implements Recipe<CraftingMatInput> {
+public class CrudeTableRecipe implements Recipe<CrudeTableInput> {
     public final Ingredient top;
     public final Ingredient left;
     public final Ingredient center;
@@ -20,7 +20,7 @@ public class CraftingMatRecipe implements Recipe<CraftingMatInput> {
     public final Ingredient bottom;
     public final ItemStack output;
 
-    public CraftingMatRecipe(Ingredient top, Ingredient left, Ingredient center, Ingredient right, Ingredient bottom, ItemStack output) {
+    public CrudeTableRecipe(Ingredient top, Ingredient left, Ingredient center, Ingredient right, Ingredient bottom, ItemStack output) {
         this.top = top;
         this.left = left;
         this.center = center;
@@ -60,7 +60,7 @@ public class CraftingMatRecipe implements Recipe<CraftingMatInput> {
     }
 
     // strict matching for shaped recipes
-    public boolean strictMatches(CraftingMatInput other, @NotNull Level level) {
+    public boolean strictMatches(CrudeTableInput other, @NotNull Level level) {
         List<ItemStack> inputs = new ArrayList<>(
                 Arrays.asList(
                         other.top(),other.left(),other.center(),other.right(),other.bottom()
@@ -96,7 +96,7 @@ public class CraftingMatRecipe implements Recipe<CraftingMatInput> {
 
     // makes sure that we have a dynamic matching for shapeless
     @Override
-    public boolean matches(CraftingMatInput input, @NotNull Level level) {
+    public boolean matches(CrudeTableInput input, @NotNull Level level) {
         List<ItemStack> inputs = new ArrayList<>(
                 Arrays.asList(
                         input.top(),input.left(),input.center(),input.right(),input.bottom()
@@ -125,7 +125,7 @@ public class CraftingMatRecipe implements Recipe<CraftingMatInput> {
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull CraftingMatInput craftingMatInputContainer, HolderLookup.@NotNull Provider registries) {
+    public @NotNull ItemStack assemble(@NotNull CrudeTableInput CrudeTableInputContainer, HolderLookup.@NotNull Provider registries) {
         return this.output.copy();
     }
 

@@ -6,8 +6,8 @@
 	"render_type": "minecraft:cutout",
 	"texture_size": [32, 32],
 	"textures": {
-		"2": "vagabond_core:block/crafting_mat_body",
-		"particle": "vagabond_core:block/crafting_mat_overhang"
+		"2": "vagabond_core:block/crude_mat_body",
+		"particle": "vagabond_core:block/crude_mat_overhang"
 	},
 	"elements": [
 		{

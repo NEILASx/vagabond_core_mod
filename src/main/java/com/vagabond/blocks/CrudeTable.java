@@ -1,6 +1,6 @@
 package com.vagabond.blocks;
 
-import com.vagabond.CraftingMat.CraftingMatMenu;
+import com.vagabond.CrudeTable.CrudeTableMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -25,7 +25,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class CraftingMat extends Block {
+public class CrudeTable extends Block {
     private static final Component CONTAINER_TITLE = Component.literal("Crafting Mat");
 
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
@@ -35,7 +35,7 @@ public class CraftingMat extends Block {
 
     protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0); // taken straight from CarpetBlock
 
-    public CraftingMat(Properties properties) {
+    public CrudeTable(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(NORTH, false)
@@ -132,7 +132,7 @@ public class CraftingMat extends Block {
     @Override
     public MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
         return new SimpleMenuProvider(
-                (containerId, playerInventory, p) -> new CraftingMatMenu(containerId, playerInventory),
+                (containerId, playerInventory, p) -> new CrudeTableMenu(containerId, playerInventory),
                 CONTAINER_TITLE
         );
     }

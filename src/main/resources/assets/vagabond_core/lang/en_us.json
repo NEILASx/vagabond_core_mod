@@ -1,6 +1,6 @@
 {
   "itemGroup.vagabond_core": "Vagabond Core",
-  "emi.category.vagabond_core.crafting_mat": "Crafting",
-  "block.vagabond_core.crafting_mat": "Crafting Mat",
+  "emi.category.vagabond_core.crude_table": "Crafting",
+  "block.vagabond_core.crude_table": "Crude Table",
   "item.vagabond_core.copper_hammer": "Copper Hammer"
 }

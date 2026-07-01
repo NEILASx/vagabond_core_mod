@@ -1,11 +1,11 @@
-package com.vagabond.CraftingMat;
+package com.vagabond.CrudeTable;
 
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
 import org.jetbrains.annotations.NotNull;
 
-public record CraftingMatInput(
+public record CrudeTableInput(
         ItemStack top,
         ItemStack left,
         ItemStack center,
@@ -14,8 +14,8 @@ public record CraftingMatInput(
  ) implements RecipeInput {
 
 
-    public static CraftingMatInput fromContainer(Container container) {
-        return new CraftingMatInput(
+    public static CrudeTableInput fromContainer(Container container) {
+        return new CrudeTableInput(
                 container.getItem(1),
                 container.getItem(3),
                 container.getItem(4),

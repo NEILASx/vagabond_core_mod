@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "vagabond_core:crafting_mat"
+          "name": "vagabond_core:crude_table"
         }
       ],
       "conditions": [

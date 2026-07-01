@@ -2,7 +2,7 @@ package com.vagabond;
 
 import com.mojang.logging.LogUtils;
 import com.vagabond.DataGeneration.RecipeProvider;
-import com.vagabond.blocks.CraftingMat;
+import com.vagabond.blocks.CrudeTable;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -36,14 +36,14 @@ public class VagabondCore {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final DeferredBlock<CraftingMat> CRAFTING_MAT = BLOCKS.register(
-            "crafting_mat",
-            () -> new CraftingMat(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL).noOcclusion())
+    public static final DeferredBlock<CrudeTable> CRUDE_TABLE = BLOCKS.register(
+            "crude_table",
+            () -> new CrudeTable(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL).noOcclusion())
     );
 
-    public static final DeferredItem<BlockItem> CRAFTING_MAT_ITEM = ITEMS.registerSimpleBlockItem(
-            "crafting_mat",
-            CRAFTING_MAT
+    public static final DeferredItem<BlockItem> CRUDE_TABLE_ITEM = ITEMS.registerSimpleBlockItem(
+            "crude_table",
+            CRUDE_TABLE
     );
 
     public static final DeferredItem<Item> COPPER_HAMMER = ITEMS.registerSimpleItem(
@@ -51,8 +51,8 @@ public class VagabondCore {
             new Item.Properties().stacksTo(1)
     );
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VAGABOND_CREATIVE_TAB = CREATIVE_MODE_TABS.register("vagabond_core_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.vagabond_core")).withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> CRAFTING_MAT_ITEM.get().getDefaultInstance()).displayItems((parameters, output) -> {
-        output.accept(CRAFTING_MAT_ITEM.get());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VAGABOND_CREATIVE_TAB = CREATIVE_MODE_TABS.register("vagabond_core_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.vagabond_core")).withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> CRUDE_TABLE_ITEM.get().getDefaultInstance()).displayItems((parameters, output) -> {
+        output.accept(CRUDE_TABLE_ITEM.get());
         output.accept(COPPER_HAMMER.get());
     }).build());
 

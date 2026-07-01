@@ -26,7 +26,7 @@ public class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
     @Override
     protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, VagabondCore.CRAFTING_MAT_ITEM)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, VagabondCore.CRUDE_TABLE_ITEM)
                         .pattern("SC")
                         .pattern("CS")
                         .define('S', Items.STICK)

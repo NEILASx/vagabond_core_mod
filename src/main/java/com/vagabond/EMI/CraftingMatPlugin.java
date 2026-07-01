@@ -1,7 +1,7 @@
 package com.vagabond.EMI;
 
-import com.vagabond.CraftingMat.CraftingMatRecipe;
-import com.vagabond.CraftingMat.CraftingMatRecipeConverter;
+import com.vagabond.CrudeTable.CrudeTableRecipe;
+import com.vagabond.CrudeTable.CrudeTableRecipeConverter;
 import com.vagabond.VagabondTypes;
 import com.vagabond.VagabondCore;
 import dev.emi.emi.api.EmiEntrypoint;
@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @EmiEntrypoint
-public class CraftingMatPlugin implements EmiPlugin {
+public class CrudeTablePlugin implements EmiPlugin {
     public static final ResourceLocation MY_SPRITE_SHEET = ResourceLocation.fromNamespaceAndPath(VagabondCore.MODID, "textures/gui/container/crafting_mat.png");
 
     public static final EmiRecipeCategory MY_CATEGORY = new EmiRecipeCategory(
@@ -38,12 +38,12 @@ public class CraftingMatPlugin implements EmiPlugin {
         for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
             // if its a crafting mat recipe add it
             if (holder.value().getType() == VagabondTypes.MAT_TYPE.get()) {
-                registry.addRecipe(new com.vagabond.EMI.CraftingMatRecipe(holder.id(), (CraftingMatRecipe) holder.value()));
+                registry.addRecipe(new com.vagabond.EMI.CrudeTableRecipe(holder.id(), (CrudeTableRecipe) holder.value()));
             }
         }
 
-        for (var holder : CraftingMatRecipeConverter.DYNAMIC_CRAFTING_LIST) {
-            registry.addRecipe(new com.vagabond.EMI.CraftingMatRecipe(holder.id(), holder.value()));
+        for (var holder : CrudeTableRecipeConverter.DYNAMIC_CRAFTING_LIST) {
+            registry.addRecipe(new com.vagabond.EMI.CrudeTableRecipe(holder.id(), holder.value()));
         }
     }
 }

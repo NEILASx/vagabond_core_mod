@@ -1,4 +1,4 @@
-package com.vagabond.CraftingMat;
+package com.vagabond.CrudeTable;
 
 import com.vagabond.VagabondCore;
 import com.vagabond.VagabondTypes;
@@ -11,9 +11,9 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static com.vagabond.CraftingMat.CraftingMatRecipeConverter.DYNAMIC_CRAFTING_LIST;
+import static com.vagabond.CrudeTable.CrudeTableRecipeConverter.DYNAMIC_CRAFTING_LIST;
 
-public class CraftingMatMenu extends AbstractContainerMenu {
+public class CrudeTableMenu extends AbstractContainerMenu {
 
     public static final int RESULT_SLOT = 0;
     private static final int MAT_SLOT_START = 1;
@@ -27,11 +27,11 @@ public class CraftingMatMenu extends AbstractContainerMenu {
     private final ResultContainer resultSlots = new ResultContainer();
     private final Player player;
 
-    public CraftingMatMenu(int containerId, Inventory playerInventory) {
+    public CrudeTableMenu(int containerId, Inventory playerInventory) {
         super(VagabondTypes.CRAFTING_MAT_MENU.get(), containerId);
         this.player = playerInventory.player;
 
-        this.addSlot(new CraftingMatResultSlot(this, this.resultSlots, RESULT_SLOT, 124, 35));
+        this.addSlot(new CrudeTableResultSlot(this, this.resultSlots, RESULT_SLOT, 124, 35));
 
         int startX = 30;
         int startY = 17;
@@ -66,14 +66,14 @@ public class CraftingMatMenu extends AbstractContainerMenu {
         }
     }
 
-    private @Nullable CraftingMatRecipe getCurrentRecipe(CraftingMatInput input) {
-        for (RecipeHolder<CraftingMatRecipe> holder : DYNAMIC_CRAFTING_LIST) {
-            CraftingMatRecipe recipe = holder.value();
+    private @Nullable CrudeTableRecipe getCurrentRecipe(CrudeTableInput input) {
+        for (RecipeHolder<CrudeTableRecipe> holder : DYNAMIC_CRAFTING_LIST) {
+            CrudeTableRecipe recipe = holder.value();
 
             if (recipe  .strictMatches(input, this.player.level())) {
                 return recipe;
             }
-            if (recipe instanceof CraftingMatShapelessRecipe) {
+            if (recipe instanceof CrudeTableShapelessRecipe) {
                 if (recipe.matches(input, this.player.level())) {
                     return recipe;
                 }
@@ -87,11 +87,11 @@ public class CraftingMatMenu extends AbstractContainerMenu {
         super.slotsChanged(container);
         if (this.player.level().isClientSide) return;
 
-        CraftingMatInput customInput = CraftingMatInput.fromContainer(this.inputSlots);
+        CrudeTableInput customInput = CrudeTableInput.fromContainer(this.inputSlots);
 
         ItemStack resultStack = ItemStack.EMPTY;
 
-        CraftingMatRecipe recipe = getCurrentRecipe(customInput);
+        CrudeTableRecipe recipe = getCurrentRecipe(customInput);
 
         if (recipe != null) {
             resultStack = recipe.assemble(customInput, this.player.level().registryAccess());
@@ -154,10 +154,10 @@ public class CraftingMatMenu extends AbstractContainerMenu {
         return itemStack;
     }
 
-    public static class CraftingMatResultSlot extends Slot {
-        private final CraftingMatMenu menu;
+    public static class CrudeTableResultSlot extends Slot {
+        private final CrudeTableMenu menu;
 
-        public CraftingMatResultSlot(CraftingMatMenu menu, Container container, int index, int x, int y) {
+        public CrudeTableResultSlot(CrudeTableMenu menu, Container container, int index, int x, int y) {
             super(container, index, x, y);
             this.menu = menu;
         }
@@ -169,13 +169,13 @@ public class CraftingMatMenu extends AbstractContainerMenu {
 
         @Override
         public void onTake(@NotNull Player player, @NotNull ItemStack stack) {
-            CraftingMatInput input = new CraftingMatInput(
+            CrudeTableInput input = new CrudeTableInput(
                     menu.getSlot(1).getItem(), menu.getSlot(2).getItem(),
                     menu.getSlot(3).getItem(), menu.getSlot(4).getItem(),
                     menu.getSlot(5).getItem()
             );
 
-            CraftingMatRecipe recipe = menu.getCurrentRecipe(input);
+            CrudeTableRecipe recipe = menu.getCurrentRecipe(input);
             if (recipe != null) {
                 for (int i = 1; i <= 5; i++) {
                     menu.getSlot(i).getItem().shrink(1);
