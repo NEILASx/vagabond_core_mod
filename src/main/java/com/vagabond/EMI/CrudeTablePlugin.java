@@ -24,14 +24,14 @@ public class CrudeTablePlugin implements EmiPlugin {
     public static final ResourceLocation MY_SPRITE_SHEET = ResourceLocation.fromNamespaceAndPath(VagabondCore.MODID, "textures/gui/container/crafting_mat.png");
 
     public static final EmiRecipeCategory MY_CATEGORY = new EmiRecipeCategory(
-            ResourceLocation.fromNamespaceAndPath(VagabondCore.MODID, "crafting_mat"),
-            EmiStack.of(VagabondCore.CRAFTING_MAT.get())
+            ResourceLocation.fromNamespaceAndPath(VagabondCore.MODID, "crude_table"),
+            EmiStack.of(VagabondCore.CRUDE_TABLE.get())
     );
 
     @Override
     public void register(EmiRegistry registry) {
         registry.addCategory(MY_CATEGORY);
-        registry.addWorkstation(MY_CATEGORY, EmiStack.of(VagabondCore.CRAFTING_MAT.get()));
+        registry.addWorkstation(MY_CATEGORY, EmiStack.of(VagabondCore.CRUDE_TABLE.get()));
 
         RecipeManager recipeManager = registry.getRecipeManager();
 

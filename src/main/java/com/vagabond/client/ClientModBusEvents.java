@@ -13,6 +13,6 @@ public class ClientModBusEvents {
 
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(VagabondTypes.CRAFTING_MAT_MENU.get(), CrudeTableScreen::new);
+        event.register(VagabondTypes.CRUDE_TABLE_MENU.get(), CrudeTableScreen::new);
     }
 }
