@@ -1,6 +1,9 @@
 # Project exclude paths
 /.gradle/
-/build/classes/java/main/
-/build/reports/
-/build/docs/
+/build/
+/bin/
 /run/
+.classpath
+.project
+.settings/
+.eclipse/
