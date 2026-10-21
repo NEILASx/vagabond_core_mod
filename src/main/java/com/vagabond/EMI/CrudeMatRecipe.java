@@ -1,17 +1,17 @@
 package com.vagabond.EMI;
 
-import com.vagabond.CrudeTable.CrudeTableShapelessRecipe;
+import com.vagabond.CrudeMat.CrudeMatShapelessRecipe;
 import dev.emi.emi.api.recipe.BasicEmiRecipe;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.resources.ResourceLocation;
 
-public class CrudeTableRecipe extends BasicEmiRecipe {
+public class CrudeMatRecipe extends BasicEmiRecipe {
     private final boolean isShapeless;
 
-    public CrudeTableRecipe(ResourceLocation id, com.vagabond.CrudeTable.CrudeTableRecipe recipe) {
-        super(CrudeTablePlugin.MY_CATEGORY, id, 118, 54);
-        this.isShapeless = (recipe instanceof CrudeTableShapelessRecipe);
+    public CrudeMatRecipe(ResourceLocation id, com.vagabond.CrudeMat.CrudeMatRecipe recipe) {
+        super(CrudeMatPlugin.MY_CATEGORY, id, 118, 54);
+        this.isShapeless = (recipe instanceof CrudeMatShapelessRecipe);
 
         this.inputs.add(dev.emi.emi.api.stack.EmiIngredient.of(recipe.top));
         this.inputs.add(dev.emi.emi.api.stack.EmiIngredient.of(recipe.left));

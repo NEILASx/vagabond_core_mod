@@ -2,9 +2,7 @@
   "required": true,
   "package": "com.vagabond.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "AnvilMenuMixin"
-  ],
+  "mixins": ["HammerMixin"],
   "injectors": {
     "defaultRequire": 1
   }

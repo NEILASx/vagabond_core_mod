@@ -1,4 +1,4 @@
-package com.vagabond.CrudeTable;
+package com.vagabond.CrudeMat;
 
 import com.vagabond.VagabondCore;
 import net.minecraft.core.HolderLookup;
@@ -26,11 +26,11 @@ class MatLayout {
 }
 
 @EventBusSubscriber(modid = VagabondCore.MODID)
-public class CrudeTableRecipeConverter {
+public class CrudeMatRecipeConverter {
 
-    public static final List<RecipeHolder<CrudeTableRecipe>> DYNAMIC_CRAFTING_LIST = new ArrayList<>();
+    public static final List<RecipeHolder<CrudeMatRecipe>> DYNAMIC_CRAFTING_LIST = new ArrayList<>();
 
-    public static CrudeTableRecipe tryConvert(ShapedRecipe shaped, HolderLookup.Provider registries) {
+    public static CrudeMatRecipe tryConvert(ShapedRecipe shaped, HolderLookup.Provider registries) {
         if (!shaped.canCraftInDimensions(3, 3)) return null;
         NonNullList<Ingredient> ingredients = shaped.getIngredients();
         int width = shaped.getWidth();
@@ -71,7 +71,7 @@ public class CrudeTableRecipeConverter {
 
                 // if it fits add it
                 if (fits) {
-                    return new CrudeTableRecipe(
+                    return new CrudeMatRecipe(
                             candidate[0][1], // top
                             candidate[1][0], // left
                             candidate[1][1], // center
@@ -88,14 +88,14 @@ public class CrudeTableRecipeConverter {
 
     @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent event) {
-        VagabondCore.LOGGER.info("Converting all 'recipeManager' recipes to CrudeTable Recipes...");
+        VagabondCore.LOGGER.info("Converting all 'recipeManager' recipes to CrudeMat Recipes...");
         DYNAMIC_CRAFTING_LIST.clear();
         RecipeManager recipeManager = event.getServer().getRecipeManager();
         HolderLookup.Provider registries = event.getServer().registryAccess();
         final long startTime = System.currentTimeMillis();
 
         for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
-            CrudeTableRecipe matRecipe = null;
+            CrudeMatRecipe matRecipe = null;
             NonNullList<Ingredient> ingredients = holder.value().getIngredients();
 
             if (holder.value() instanceof ShapedRecipe shapedRecipe) {
@@ -109,7 +109,7 @@ public class CrudeTableRecipeConverter {
                         padded.add(Ingredient.EMPTY);
                     }
 
-                    matRecipe = new CrudeTableShapelessRecipe(
+                    matRecipe = new CrudeMatShapelessRecipe(
                             padded.get(0),
                             padded.get(1),
                             padded.get(2),
@@ -125,7 +125,7 @@ public class CrudeTableRecipeConverter {
                         "/mat_dynamic_" + holder.id().getPath()
                 );
 
-                RecipeHolder<CrudeTableRecipe> wrappedHolder = new RecipeHolder<>(newId, matRecipe);
+                RecipeHolder<CrudeMatRecipe> wrappedHolder = new RecipeHolder<>(newId, matRecipe);
                 DYNAMIC_CRAFTING_LIST.add(wrappedHolder);
 
 //                VagabondCore.LOGGER.info("Successfully indexed plus recipe for: {}", holder.id());
@@ -135,7 +135,8 @@ public class CrudeTableRecipeConverter {
         final long endTime = System.currentTimeMillis();
 
 
-        VagabondCore.LOGGER.info("Total execution time: {} ms", (endTime - startTime));
+        VagabondCore.LOGGER.info("Total execution time: {} ms", (endTime - startTime)); // on average around like 10-5 ms
+        // way faster than i expected for something that i coppled up in like a few days lmao
 
 
     }

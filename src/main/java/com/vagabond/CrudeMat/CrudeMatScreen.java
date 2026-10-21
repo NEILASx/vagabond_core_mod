@@ -1,4 +1,4 @@
-package com.vagabond.CrudeTable;
+package com.vagabond.CrudeMat;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -8,11 +8,11 @@ import net.minecraft.world.entity.player.Inventory;
 import com.vagabond.VagabondCore;
 import org.jetbrains.annotations.NotNull;
 
-public class CrudeTableScreen extends AbstractContainerScreen<CrudeTableMenu> {
+public class CrudeMatScreen extends AbstractContainerScreen<CrudeMatMenu> {
     private static final ResourceLocation BG_TEXTURE =
             ResourceLocation.fromNamespaceAndPath(VagabondCore.MODID, "textures/gui/container/crafting_mat.png");
 
-    public CrudeTableScreen(CrudeTableMenu menu, Inventory playerInventory, Component title) {
+    public CrudeMatScreen(CrudeMatMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.imageWidth = 176;
         this.imageHeight = 166;

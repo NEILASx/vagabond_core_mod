@@ -3,6 +3,7 @@ package com.vagabond;
 import com.mojang.logging.LogUtils;
 import com.vagabond.DataGeneration.RecipeProvider;
 import com.vagabond.blocks.CrudeTable;
+import com.vagabond.structure.UndergroundFortress;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -14,11 +15,11 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -36,14 +37,14 @@ public class VagabondCore {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final DeferredBlock<CrudeTable> CRUDE_TABLE = BLOCKS.register(
+    public static final DeferredBlock<CrudeTable> CRUDE_MAT = BLOCKS.register(
             "crude_table",
             () -> new CrudeTable(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL).noOcclusion())
     );
 
-    public static final DeferredItem<BlockItem> CRUDE_TABLE_ITEM = ITEMS.registerSimpleBlockItem(
+    public static final DeferredItem<BlockItem> CRUDE_MAT_ITEM = ITEMS.registerSimpleBlockItem(
             "crude_table",
-            CRUDE_TABLE
+            CRUDE_MAT
     );
 
     public static final DeferredItem<Item> COPPER_HAMMER = ITEMS.registerSimpleItem(
@@ -51,8 +52,17 @@ public class VagabondCore {
             new Item.Properties().stacksTo(1)
     );
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VAGABOND_CREATIVE_TAB = CREATIVE_MODE_TABS.register("vagabond_core_tab", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.vagabond_core")).withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> CRUDE_TABLE_ITEM.get().getDefaultInstance()).displayItems((parameters, output) -> {
-        output.accept(CRUDE_TABLE_ITEM.get());
+    public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES =
+            DeferredRegister.create(Registries.STRUCTURE_TYPE, MODID);
+
+    public static final DeferredHolder<StructureType<?>, StructureType<UndergroundFortress>> UNDERGROUND_FORTRESS =
+            STRUCTURE_TYPES.register("underground_fortress", () -> () -> UndergroundFortress.CODEC);
+
+
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> VAGABOND_CREATIVE_TAB = CREATIVE_MODE_TABS.register("vagabond_core_tab",
+            () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.vagabond_core")).withTabsBefore(CreativeModeTabs.COMBAT).icon(() ->
+                    CRUDE_MAT_ITEM.get().getDefaultInstance()).displayItems((parameters, output) -> {
+        output.accept(CRUDE_MAT_ITEM.get());
         output.accept(COPPER_HAMMER.get());
     }).build());
 
@@ -62,6 +72,7 @@ public class VagabondCore {
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
+        STRUCTURE_TYPES.register(modEventBus);
         VagabondTypes.register(modEventBus);
 
         LOGGER.info("Loaded Vagabond Core!");

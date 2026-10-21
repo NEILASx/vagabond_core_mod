@@ -1,6 +1,6 @@
 package com.vagabond.client;
 
-import com.vagabond.CrudeTable.CrudeTableScreen;
+import com.vagabond.CrudeMat.CrudeMatScreen;
 import com.vagabond.VagabondCore;
 import com.vagabond.VagabondTypes;
 import net.neoforged.api.distmarker.Dist;
@@ -13,6 +13,6 @@ public class ClientModBusEvents {
 
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(VagabondTypes.CRUDE_TABLE_MENU.get(), CrudeTableScreen::new);
+        event.register(VagabondTypes.CRUDE_MAT_MENU.get(), CrudeMatScreen::new);
     }
 }

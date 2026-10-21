@@ -20,7 +20,7 @@ public class VagabondTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(Registries.MENU, VagabondCore.MODID);
 
-    public static final DeferredHolder<MenuType<?>, MenuType<CrudeMatMenu>> CRUDE_TABLE_MENU =
+    public static final DeferredHolder<MenuType<?>, MenuType<CrudeMatMenu>> CRUDE_MAT_MENU =
             MENUS.register("crude_mat_menu", () -> IMenuTypeExtension.create((windowId, inv, data) -> new CrudeMatMenu(windowId, inv)));
 
 

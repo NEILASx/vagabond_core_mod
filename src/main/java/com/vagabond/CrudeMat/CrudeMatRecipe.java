@@ -1,18 +1,20 @@
-package com.vagabond.CrudeTable;
+package com.vagabond.CrudeMat;
 
 import com.vagabond.VagabondTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CrudeTableRecipe implements Recipe<CrudeTableInput> {
+public class CrudeMatRecipe implements Recipe<CrudeMatInput> {
     public final Ingredient top;
     public final Ingredient left;
     public final Ingredient center;
@@ -20,7 +22,7 @@ public class CrudeTableRecipe implements Recipe<CrudeTableInput> {
     public final Ingredient bottom;
     public final ItemStack output;
 
-    public CrudeTableRecipe(Ingredient top, Ingredient left, Ingredient center, Ingredient right, Ingredient bottom, ItemStack output) {
+    public CrudeMatRecipe(Ingredient top, Ingredient left, Ingredient center, Ingredient right, Ingredient bottom, ItemStack output) {
         this.top = top;
         this.left = left;
         this.center = center;
@@ -60,7 +62,7 @@ public class CrudeTableRecipe implements Recipe<CrudeTableInput> {
     }
 
     // strict matching for shaped recipes
-    public boolean strictMatches(CrudeTableInput other, @NotNull Level level) {
+    public boolean strictMatches(@UnknownNullability CrudeMatInput other, @NotNull Level level) {
         List<ItemStack> inputs = new ArrayList<>(
                 Arrays.asList(
                         other.top(),other.left(),other.center(),other.right(),other.bottom()
@@ -96,7 +98,7 @@ public class CrudeTableRecipe implements Recipe<CrudeTableInput> {
 
     // makes sure that we have a dynamic matching for shapeless
     @Override
-    public boolean matches(CrudeTableInput input, @NotNull Level level) {
+    public boolean matches(CrudeMatInput input, @NotNull Level level) {
         List<ItemStack> inputs = new ArrayList<>(
                 Arrays.asList(
                         input.top(),input.left(),input.center(),input.right(),input.bottom()
@@ -125,7 +127,7 @@ public class CrudeTableRecipe implements Recipe<CrudeTableInput> {
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull CrudeTableInput CrudeTableInputContainer, HolderLookup.@NotNull Provider registries) {
+    public @NotNull ItemStack assemble(@NotNull CrudeMatInput CrudeTableInputContainer, HolderLookup.@NotNull Provider registries) {
         return this.output.copy();
     }
 
@@ -154,5 +156,7 @@ public class CrudeTableRecipe implements Recipe<CrudeTableInput> {
     public @NotNull RecipeType<?> getType() {
         return VagabondTypes.MAT_TYPE.get();
     }
+
+
 }
 

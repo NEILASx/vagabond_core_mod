@@ -1,6 +1,6 @@
 package com.vagabond.blocks;
 
-import com.vagabond.CrudeTable.CrudeTableMenu;
+import com.vagabond.CrudeMat.CrudeMatMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -33,7 +33,7 @@ public class CrudeTable extends Block {
     public static final BooleanProperty WEST = BooleanProperty.create("west");
     public static final BooleanProperty EAST = BooleanProperty.create("east");
 
-    protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0); // taken straight from CarpetBlock
+    protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 10.0, 16.0); // taken straight from CarpetBlock
 
     public CrudeTable(Properties properties) {
         super(properties);
@@ -132,7 +132,7 @@ public class CrudeTable extends Block {
     @Override
     public MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
         return new SimpleMenuProvider(
-                (containerId, playerInventory, p) -> new CrudeTableMenu(containerId, playerInventory),
+                (containerId, playerInventory, p) -> new CrudeMatMenu(containerId, playerInventory),
                 CONTAINER_TITLE
         );
     }

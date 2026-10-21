@@ -9,6 +9,17 @@ version = mod_version
 group = mod_group_id
 
 repositories {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
     maven {
         name = "TerraformersMC"
         url = "https://maven.terraformersmc.com/"
@@ -100,6 +111,8 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 dependencies {
+    implementation "maven.modrinth:1eAoo2KR:7TVdVtxF" // YetAnotherConfigLib (YACL) (required by Manual Labour)
+    implementation "maven.modrinth:kCbtgaek:c5YN7W6n" // Manual Labour
     implementation "curse.maven:farmers-delight-398521:8083481"
     compileOnly "dev.emi:emi-neoforge:${emi_version}:api"
     runtimeOnly "dev.emi:emi-neoforge:${emi_version}"
