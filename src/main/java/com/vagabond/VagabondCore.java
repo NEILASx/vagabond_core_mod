@@ -12,7 +12,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.structure.StructureType;
@@ -47,11 +46,6 @@ public class VagabondCore {
             CRUDE_MAT
     );
 
-    public static final DeferredItem<Item> COPPER_HAMMER = ITEMS.registerSimpleItem(
-            "copper_hammer",
-            new Item.Properties().stacksTo(1)
-    );
-
     public static final DeferredRegister<StructureType<?>> STRUCTURE_TYPES =
             DeferredRegister.create(Registries.STRUCTURE_TYPE, MODID);
 
@@ -63,7 +57,6 @@ public class VagabondCore {
             () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.vagabond_core")).withTabsBefore(CreativeModeTabs.COMBAT).icon(() ->
                     CRUDE_MAT_ITEM.get().getDefaultInstance()).displayItems((parameters, output) -> {
         output.accept(CRUDE_MAT_ITEM.get());
-        output.accept(COPPER_HAMMER.get());
     }).build());
 
     public VagabondCore(IEventBus modEventBus, ModContainer modContainer) {
