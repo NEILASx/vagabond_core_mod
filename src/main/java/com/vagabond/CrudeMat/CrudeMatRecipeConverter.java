@@ -12,6 +12,15 @@ import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import net.neoforged.fml.loading.FMLPaths;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Set;
 
 record SlotPos(int x, int y) {}
 
@@ -29,6 +38,46 @@ class MatLayout {
 public class CrudeMatRecipeConverter {
 
     public static final List<RecipeHolder<CrudeMatRecipe>> DYNAMIC_CRAFTING_LIST = new ArrayList<>();
+    private static final Set<ResourceLocation> BLACKLISTED_RECIPES = new HashSet<>();
+
+    private static void loadBlacklist() {
+        BLACKLISTED_RECIPES.clear();
+
+        Path path = FMLPaths.CONFIGDIR.get().resolve("vagabond/crudemat_blacklist.json");
+
+        try {
+            Files.createDirectories(path.getParent());
+
+            // create default config if it doesnt exist
+            if (!Files.exists(path)) {
+                Files.writeString(path, """
+                    {
+                      "blacklisted_recipes": []
+                    }
+                """);
+            }
+
+            JsonObject json = JsonParser.parseString(Files.readString(path)).getAsJsonObject();
+
+            json.getAsJsonArray("blacklisted_recipes").forEach(element -> {
+                ResourceLocation id = ResourceLocation.parse(
+                        element.getAsString()
+                );
+                BLACKLISTED_RECIPES.add(id);
+            });
+
+            VagabondCore.LOGGER.info(
+                    "Loaded {} CrudeMat blacklisted recipes",
+                    BLACKLISTED_RECIPES.size()
+            );
+
+        } catch (IOException | RuntimeException e) {
+            VagabondCore.LOGGER.error(
+                    "Failed to load CrudeMat blacklist",
+                    e
+            );
+        }
+    }
 
     public static CrudeMatRecipe tryConvert(ShapedRecipe shaped, HolderLookup.Provider registries) {
         if (!shaped.canCraftInDimensions(3, 3)) return null;
@@ -88,6 +137,7 @@ public class CrudeMatRecipeConverter {
 
     @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent event) {
+        loadBlacklist();
         VagabondCore.LOGGER.info("Converting all 'recipeManager' recipes to CrudeMat Recipes...");
         DYNAMIC_CRAFTING_LIST.clear();
         RecipeManager recipeManager = event.getServer().getRecipeManager();
@@ -95,6 +145,9 @@ public class CrudeMatRecipeConverter {
         final long startTime = System.currentTimeMillis();
 
         for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
+            if (BLACKLISTED_RECIPES.contains(holder.id())) {
+                continue;
+            }
             CrudeMatRecipe matRecipe = null;
             NonNullList<Ingredient> ingredients = holder.value().getIngredients();
 
